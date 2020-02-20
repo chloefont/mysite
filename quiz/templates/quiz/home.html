@@ -1,0 +1,29 @@
+{% extends "quiz/base.html" %}
+
+{% block title %}
+  L'incroyable quiz sur les poissons
+{% endblock %}
+
+{% block content %}
+  <h1>À quel point suis-je à la ramasse sur les poissons?</h1>
+  <p>
+    Ils sont parfois aussi mignons que des chatons, aussi intelligents que des bergers allemands,
+    aussi charmeurs que des perroquets, les animaux qui vivent sous l'eau. On croit savoir qui ils
+    sont, où ils crèchent et comment ils passent leurs après-midis... Et bien ça ne saurait durer
+    très longtemps! Ce petit quiz va remettre les pendules à l'heure, celle d'un océan de connaissances à rattraper.
+  </p>
+  <p>
+    Elle n'est pas froide et on a pied, jetons-nous à l'eau.
+  </p>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="text-center">
+      {{form.as_p}}
+      <button type="submit" name="button" class="margin-top">C'est parti</button>
+    </div>
+  </form>
+  <p class="text-center">
+    <img src="../poisson.jpeg" alt="photo de poisson" class="image">
+  </p>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "quiz/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+  <h1 class="text-center">{{title}}</h1>
+  <h2 class="text-center">{{score}}%</h2>
+  <p class="text-center">{{description}}</p>
+  <div class="text-center">
+    <a class="button "href="{% url 'home' %}">Réessayer</a>
+  </div>
+  <table>
+    <thead>
+      <tr class>
+        <th>#</th>
+        <th>Nom</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for results in leaderboard %}
+      <tr>
+        <td class="text-right">{{forloop.counter}}</td>
+        <td class="text-left">{{results.name}}</td>
+        <td class="text-right">{{results.score}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
