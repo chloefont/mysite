@@ -1,5 +1,7 @@
 {% extends "quiz/base.html" %}
 
+{% load static %}
+
 {% block title %}
   L'incroyable quiz sur les poissons
 {% endblock %}
@@ -24,6 +26,6 @@
     </div>
   </form>
   <p class="text-center">
-    <img src="../poisson.jpeg" alt="photo de poisson" class="image">
+    <img src="{% static 'poisson.jpeg' %}" alt="photo de poisson" class="image">
   </p>
 {% endblock %}
