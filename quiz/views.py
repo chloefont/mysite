@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from quiz.models import Question, Results
 from quiz.utils import get_rank
 from quiz.forms import NameForm
+from django.db.models import Sum
 
 def home(request):
     name_form = NameForm(request.POST)
@@ -51,9 +52,9 @@ def results(request):
         answer = request.session['answers'][str(question.id)]
 
         if question.is_correct(answer):
-            score += 1
+            score += question.points
 
-    score_percentage = int(score / total_questions*100)
+    score_percentage = int(score / Question.objects.aggregate(points=Sum('points'))['points']*100)
     rank = get_rank(score_percentage)
     del request.session['answers']
 

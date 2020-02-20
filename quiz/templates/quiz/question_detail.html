@@ -9,6 +9,9 @@
     </div>
     <div class="question-body">
       <h1 class="question-title">{{question.label}}</h1>
+      {% if question.points > 1 %}
+        <p>Cette question vaut {{ question.points}} points !</p>
+      {% endif %}
       <form class="" action="" method="post">
         {% csrf_token %}
         {% for option in options %}

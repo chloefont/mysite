@@ -3,6 +3,7 @@ from django.utils import timezone
 
 class Question(models.Model):
     label = models.CharField(max_length=100)
+    points = models.IntegerField(default=1)
 
     def __str__(self):
         return self.label
