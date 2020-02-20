@@ -59,7 +59,7 @@ def results(request):
     del request.session['answers']
 
     Results.objects.create(name=request.session['name'], score=score_percentage)
-    leaderboard = Results.objects.order_by('-score')[:3]
+    leaderboard = Results.objects.order_by('-score')[:10]
 
     return render(request, 'quiz/results.html', {
         'score':score_percentage,
