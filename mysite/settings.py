@@ -124,12 +124,14 @@ LOGGING = {
      'version': 1,
      'disable_existing_loggers': False,
      'handlers': {
-        'level': 'INFO',
-        'class': 'logging.StreamHandler',
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
      },
      'root':{
-     'level': 'WARNING',
-     'handlers': ['console'],
+        'level': 'WARNING',
+        'handlers': ['console'],
      },
 }
 
