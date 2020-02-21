@@ -4,7 +4,7 @@ def get_rank(score_percentage):
         [75, "Bravo!", "Tu en sais plus que la plupart des poissons (et j'en ai connu)!"],
         [50, "Pas mal!", "Une sur deux, c'est pas encore ça. On va dire que tu est un expert d'eau douce."],
         [25, "Y a du boulot...", "C'est mieux que rien, mais tu patauges dans l'eau de mer."],
-        [0, "PAs bravo!", "Tu déçois tous les poissons là (surtout Philippe le poisson lion)..."],
+        [0, "Pas bravo!", "Tu déçois tous les poissons là (surtout Philippe le poisson lion)..."],
     ]
 
     for rank in ranks:
