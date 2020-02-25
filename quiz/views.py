@@ -3,6 +3,7 @@ from quiz.models import Question, Results
 from quiz.utils import get_rank
 from quiz.forms import NameForm
 from django.db.models import Sum
+from django.urls import reverse
 
 def home(request):
     name_form = NameForm(request.POST)
@@ -25,13 +26,8 @@ def question_detail(request, question_id):
         request.session['answers'][str(question.id)] = (request.POST.get('option'))
         request.session.modified = True
 
-        next_question = question.get_next_question()
+        return redirect('solution', question_id=question.id)
 
-        if next_question:
-            return redirect('question_detail', question_id=next_question.id)
-
-        else:
-            return redirect('results')
     context = {
         'question': question,
         'options': question.options.all(),
@@ -66,4 +62,29 @@ def results(request):
         'title':rank['title'],
         'description': rank['description'],
         'leaderboard': leaderboard,
+    })
+
+def solution(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    answer = "Tu t'es trompé."
+
+    try:
+        if question.is_correct(request.session['answers'][str(question_id)]):
+            answer = "C'est juste !"
+    except KeyError:
+        return redirect('question_detail', question_id=question.id)
+
+    next_question = question.get_next_question()
+    next_url = reverse('results')
+
+
+    if next_question:
+        next_url = reverse('question_detail',kwargs={'question_id':next_question.id})
+
+
+
+    return render(request, 'quiz/solutions.html', {
+        'question': question,
+        'answer': answer,
+        'next_url':next_url,
     })
