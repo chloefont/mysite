@@ -1,0 +1,19 @@
+{% extends "quiz/base.html" %}
+
+{% block title %}
+  Réponse question {{question.get_number}}
+{% endblock %}
+
+{% block content %}
+  <div class="text-center">
+    <h1>{{answer}}</h1>
+    <h2>{{question.label}}</h2>
+    <p>
+      {{question.solution}}
+    </p>
+    <a class="button" href="{{next_url}}">Continuez</a>
+  </div>
+
+
+
+{% endblock %}
